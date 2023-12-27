@@ -1,0 +1,19 @@
+{% extends 'crm/base.html' %}
+
+<html>
+  {% block content %}
+        <title> homopage </title>
+
+        <h3>Homepage! </h3>
+
+        <p> Welcome to the homepage! </p>
+
+
+        {% for c in Mainclientlist  %}
+            <li> {{ c.name }} <small>-- {{ c.occupation }}</small></li>
+           
+        {% endfor %}
+
+
+   {% endblock %}     
+</html>
