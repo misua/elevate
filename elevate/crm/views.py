@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Task, Review
+from .models import Task
 from .forms import TaskForm
 
 # Create your views here.
@@ -10,15 +10,13 @@ def home(request):
 
 
 
-def task(request):
+def tasks(request):
   
   queryDataAll = Task.objects.all()
   
-  context = {
-     'AllTasks': queryDataAll,
-  }
+  context = {'AllTasks': queryDataAll}
 
-  return render(request, 'crm/task.html', context)
+  return render(request, 'crm/view-tasks.html', context)
 
 
 
@@ -37,19 +35,15 @@ def create_task(request):
     form = TaskForm()
 
     if request.method == 'POST':
+
         form = TaskForm(request.POST)
 
         if form.is_valid():
         
             form.save()
         
-            return redirect(task)
-        
-        else:
-        
-            print(form.errors)
-
-
+            return redirect('view-tasks')
+      
 
     context = {'TaskForm': form}
 

@@ -2,6 +2,18 @@
     <h1> website under development</h1>
 
     <hr>
+    <a href="{% url 'home' %}"> Home </a>
+    &nbsp;
+
+    <a href="{% url 'create-task'  %}"> Create Task </a>
+    
+    &nbsp;
+    <a href="{% url 'views-tasks' %}"> View Tasks </a>
+
+     &nbsp;
+      <a href="{% url 'register' %}"> Register </a>
+    <hr>
+
     {%block content %}
 
     {% endblock %}
