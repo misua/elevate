@@ -10,16 +10,30 @@ def home(request):
 
 
 
+# crud -reading data
+
 def tasks(request):
   
   queryDataAll = Task.objects.all()
-  
-  context = {'AllTasks': queryDataAll}
+  queryRecent = Task.objects.all().latest('created')
+
+      
+  context = {'AllTasks': queryDataAll,'RecentTasks': queryRecent}
+
+ 
 
   return render(request, 'crm/view-tasks.html', context)
 
 
+#most recent
 
+# def latest_tasks(request):
+  
+#   queryRecent = Task.objects.all().latest('created')
+  
+#   context = {'RecentTasks': queryRecent}
+
+#   return render(request, 'crm/view-tasks.html', context)
 
 
 
@@ -42,7 +56,7 @@ def create_task(request):
         
             form.save()
         
-            return redirect('view-tasks')
+            return redirect('views-tasks')
       
 
     context = {'TaskForm': form}
