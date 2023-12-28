@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Task, Review
 from .forms import TaskForm
 
@@ -12,14 +12,15 @@ def home(request):
 
 def task(request):
   
-  #queryDataSingle = Task.objects.all()
-  queryDataSingle = Task.objects.filter(title__contains='buy')
-
+  queryDataAll = Task.objects.all()
+  
   context = {
-     'singleTask': queryDataSingle,
+     'AllTasks': queryDataAll,
   }
 
   return render(request, 'crm/task.html', context)
+
+
 
 
 
@@ -30,11 +31,27 @@ def register(request):
 
 
 
-def task_form(request):
+
+def create_task(request):
     
     form = TaskForm()
+
+    if request.method == 'POST':
+        form = TaskForm(request.POST)
+
+        if form.is_valid():
+        
+            form.save()
+        
+            return redirect(task)
+        
+        else:
+        
+            print(form.errors)
+
+
 
     context = {'TaskForm': form}
 
 
-    return render(request, 'crm/task-form.html', context )
+    return render(request, 'crm/create-task.html', context )

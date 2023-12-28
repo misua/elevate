@@ -5,17 +5,20 @@
        
        
 
-        <h3>Tasks </h3>
+        <h3>All Tasks </h3>
         <hr>
-        {% for task in singleTask %}
-            <hr>
-            <li>{{ task.title }}: <small>{{ task.created }}</small></li>
-            <hr>
-            <li><small>{{ task.description }}</small></li>
-            
+
+        {% for task in Alltasks %}
+        
+            {{task.id}}
+            <br>
+            {{task.title}}
+            <br>
+            {{task.description}}
+            <br>
+            {{task.created}}
+
+
         {% endfor %}
-
-
-     
-
+        
     {% endblock %}     
