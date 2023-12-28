@@ -1,5 +1,6 @@
 from django.db import models
-
+from django.views import View
+from django.shortcuts import render
 # Create your models here.
 
 class Task(models.Model):
@@ -10,6 +11,7 @@ class Task(models.Model):
 
     def __str__(self):
         return self.title
+    
 
 
 class Review(models.Model):
@@ -21,3 +23,6 @@ class Review(models.Model):
 
     def __str__(self):
         return self.reviewer_name
+    
+
+   

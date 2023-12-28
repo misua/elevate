@@ -1,0 +1,17 @@
+{% extends 'crm/base.html' %}
+
+<html>
+    {% block content %}
+        <title>review list </title>
+    {% {% for r  in all_reviews %}
+        <li>
+        <small> {{ r.reviewer_name }} -- {{% r.review_title %}}</small>
+        
+        </li>
+    
+    {% endfor %}}
+
+  
+
+    {% endblock %}     
+</html>
