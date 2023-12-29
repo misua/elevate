@@ -9,25 +9,18 @@
 
         {% for task in AllTasks %}
             <br>
-        <ul>
-            {% comment %} <li>{{task.id}}</li> {% endcomment %}
-            <li>{{task.title}}</li>
-            <li>{{task.description}}</li>
-        </ul>
-       
+            <ul>
+                <li>{{task.id}}</li>
+                <li>{{task.title}}</li>
+                <li>{{task.description}}</li>
+            </ul>
+            <a href="{% url 'update-task' task.id %}">Update task</a>
          {% endfor %}
 
         <hr>
 
-            <h3> Most recent task! </h3>
-            <ul>
-            <li>{{RecentTasks.created}}</li>
-            <li>{{RecentTasks.title}}</li>
-            </ul>
-
-
-       
-
+         
+    
 
         
     {% endblock %}
