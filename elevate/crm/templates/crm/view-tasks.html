@@ -14,15 +14,16 @@
                 <li>{{task.title}}</li>
                 <li>{{task.description}}</li>
             </ul>
-            <a href="{% url 'update-task' task.id %}">Update task</a>
+            <a href="{% url 'update-task' task.id %} style="margin-right:10px;">Update task</a>
+            &nbsp;
+            <a href="{% url 'delete-task' task.id %}">Delete task</a>
+            <br>
          {% endfor %}
 
         <hr>
 
          
     
-
-        
     {% endblock %}
 
 

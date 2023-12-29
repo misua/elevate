@@ -1,0 +1,21 @@
+{% extends "crm/base.html" %}
+
+
+{% block content %}
+
+    <h3> Delete your Task here!</h3>
+    <hr>
+    <form method="POST" autocomplete="off">
+
+        {% csrf_token %}
+
+   
+       {{UpdateTask.as_p}}
+
+        <input type="submit" value="Delete Task">
+    </form>
+
+{% endblock content %}
+
+
+
