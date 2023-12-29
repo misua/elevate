@@ -58,13 +58,14 @@ def update_task(request, pk):
     return render(request, 'crm/update-task.html', context )
 
 
-#CRUD -DELETE TASK
+#CRUD -DELETE TASK ()
 
 def delete_task(request, pk):
-    task = get_object_or_404(id=pk)
+    task = get_object_or_404(Task, id=pk)
+
     if request.method == 'POST':
         task.delete()
         return redirect('views-tasks')
 
-    context = {'item': task}
-    return render(request, 'crm/delete-task.html', context)
+    # context = {'item': task}
+    return render(request, 'crm/delete-task.html')
