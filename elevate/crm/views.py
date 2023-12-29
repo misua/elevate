@@ -15,8 +15,7 @@ def home(request):
 def tasks(request):
   
   queryDataAll = Task.objects.all()
-  queryRecent = Task.objects.all().latest('created')
-  context = {'AllTasks': queryDataAll,'RecentTasks': queryRecent}
+  context = {'AllTasks': queryDataAll}
   return render(request, 'crm/view-tasks.html', context)
 
 

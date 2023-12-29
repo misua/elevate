@@ -2,23 +2,27 @@
 
 
     {% block content %}
-        
-        <h3>All Tasks </h3>
-        <hr>
-    
-
-        {% for task in AllTasks %}
-            <br>
-            <ul>
-                <li>{{task.id}}</li>
-                <li>{{task.title}}</li>
-                <li>{{task.description}}</li>
-            </ul>
-            <a href="{% url 'update-task' task.id %} style="margin-right:10px;">Update task</a>
+        {% if not AllTasks %}
+            <p>No tasks to display.</p>
+        {% else %}
+            {% for task in AllTasks %}
+        <br>
+        <div class="card">
+        <div class="card-header">
+        Tasks <small>{{task.created}}</small>
+        </div>
+            <div class="card-body">
+            <h5 class="card-title">{{task.title}}</h5>
+            <p class="card-text">{{task.description}}</p>
+            {% comment %} <a href="#" class="btn btn-primary">Go somewhere</a> {% endcomment %}
+            <a href="{% url 'update-task' task.id %}" class="btn btn-secondary">Update task</a>
             &nbsp;
-            <a href="{% url 'delete-task' task.id %}">Delete task</a>
-            <br>
+            <a href="{% url 'delete-task' task.id %}" class="btn btn-primary">Delete task</a>
+        </div>
+        </div>
+  
          {% endfor %}
+        {% endif %}
 
         <hr>
 
