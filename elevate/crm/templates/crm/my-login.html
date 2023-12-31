@@ -1,0 +1,23 @@
+{%extends 'crm/base.html'%}
+
+{%block content%}
+
+
+    <title>Login Page</title>
+    <h3>Login</h3>
+    <p>Please fill in the form below to login to your account</p>
+
+    <hr>
+
+    <form method="POST" autocomplete="off">
+
+        {% csrf_token %}
+
+        {{ LoginForm.as_p }}  
+              
+        <input type="submit" value="Login">
+    </form>
+
+
+{%endblock%}
+

@@ -1,7 +1,16 @@
 {%extends 'crm/base.html'%}
 
 {%block content%}
-<title>Register</title>
-<p>Registration Page!</p>
+    <title>Register</title>
+    <p>Registration Page!</p>
+
+    <form method="POST" autocomplete="off">
+
+        {% csrf_token %}
+
+        {{ RegistrationForm.as_p }}  
+              
+        <input type="submit" value="Create account">
+    </form>
 {%endblock%}
 

@@ -1,5 +1,5 @@
 from django.db import models
-from django.views import View
+# from django.views import View
 from django.shortcuts import render
 # Create your models here.
 

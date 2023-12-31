@@ -12,5 +12,10 @@ urlpatterns = [
     path('register/', views.register, name='register'),
     
     path('create-task/', views.create_task, name='create-task'),
+
+    path('login/', views.my_login, name='my-login'),
+
+    path('dashboard/', views.dashboard, name='dashboard'),
+
    
 ]

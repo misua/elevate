@@ -1,6 +1,14 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Task
-from .forms import TaskForm
+from django.http import HttpResponse
+
+from .forms import TaskForm,CreateUserForm,LoginForm
+
+from django.contrib.auth.models import auth
+from django.contrib.auth import authenticate,login,logout
+
+
+
 
 # Create your views here.
 
@@ -68,3 +76,45 @@ def delete_task(request, pk):
 
     # context = {'item': task}
     return render(request, 'crm/delete-task.html')
+
+#CRUD - REGISTER USER (register.html, views.py)
+def register(request):
+    form = CreateUserForm()
+
+    if request.method == 'POST':
+        form = CreateUserForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponse('User created successfully')
+        
+    context = {'RegistrationForm': form}
+    return render(request, 'crm/register.html', context )
+
+
+#CRUD - LOGIN USER (login.html, views.py)
+
+def my_login(request):
+    form = LoginForm()
+
+    if request.method == 'POST':
+        form = LoginForm(request.POST)
+    
+        if form.is_valid():
+            username = request.POST['username']
+            password= request.POST['password']
+            user = authenticate(username=username, password=password)
+
+            if user is not None:
+                login(request, user)
+                return redirect(dashboard)
+    
+    context = {'LoginForm': form}
+
+    return render(request, 'crm/my-login.html', context )
+
+
+
+
+def dashboard(request):
+
+    return render(request, 'crm/dashboard.html')
