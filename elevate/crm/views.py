@@ -114,8 +114,6 @@ def my_login(request):
                login(request, user)
                return redirect('dashboard')
           
-            # else:
-            #     return redirect('my-login')
         
     
     context = {'LoginForm': form}
