@@ -98,11 +98,16 @@ def my_login(request):
     form = LoginForm()
 
     if request.method == 'POST':
-        form = LoginForm(request, data=request.POST)
+        # form = LoginForm(request, data=request.POST)
+        form = LoginForm(request,request.POST)
     
         if form.is_valid():
-            username = request.POST.get('username')
-            password= request.POST.get('password')
+            # username = request.POST.get('username')
+            # password= request.POST.get('password')
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password')
+            # username = request.POST['username']
+            # password = request.POST['password']
             user = authenticate(request,username=username, password=password)
 
             if user is not None:
