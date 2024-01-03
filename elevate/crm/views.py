@@ -1,13 +1,18 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Task
-from django.http import HttpResponse
 
 from .forms import TaskForm,CreateUserForm,LoginForm
 
-from django.contrib.auth.models import auth
+from django.contrib import messages
 from django.contrib.auth import authenticate,login,logout
 
+from django import forms
+from django.contrib.auth.forms import AuthenticationForm
 
+class CustomAuthenticationForm(AuthenticationForm):
+    error_messages = {
+        'invalid_login': "Invalid username or password. ",
+    }
 
 
 # Create your views here.
@@ -99,7 +104,8 @@ def my_login(request):
 
     if request.method == 'POST':
         # form = LoginForm(request, data=request.POST)
-        form = LoginForm(request,request.POST)
+        #form = LoginForm(request,request.POST)
+        form = CustomAuthenticationForm(request, data=request.POST)
     
         if form.is_valid():
             # username = request.POST.get('username')
@@ -113,12 +119,11 @@ def my_login(request):
             if user is not None:
                login(request, user)
                return redirect('dashboard')
-          
-        
-    
-    context = {'LoginForm': form}
-
-    return render(request, 'crm/my-login.html', context )
+            else:
+                #messages.error(request, 'Username or Password is incorrect')
+                form = CustomAuthenticationForm()
+        context = {'LoginForm': form}
+        return render(request, 'crm/my-login.html', context )
 
 
 
@@ -126,3 +131,8 @@ def my_login(request):
 def dashboard(request):
 
     return render(request, 'crm/dashboard.html')
+
+
+def user_logout(request):
+    logout(request) #auth.logout(request)
+    return redirect("home")
